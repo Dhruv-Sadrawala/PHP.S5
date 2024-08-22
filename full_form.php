@@ -7,7 +7,7 @@
 </head>
 <body>
 <table width="60%" align="center"  cellpadding="20" cellspacing="10" style="font-family: sans-serif; height: 95vh;">
-	<form action="full_form_action.php" method="POST">
+	<form enctype="multipart/form-data" action="full_form_action.php" method="POST">
 		<tr>
 			<td colspan="2" bgcolor="gray" style="color:white;"><b>Testform</b></td>
 		</tr>
@@ -21,9 +21,9 @@
 		</tr>
 		<tr>
 			<td width="30%">Gender</td>
-			<td width="60%"><input type="radio" name="gender" value="male">Male
+			<td width="60%"><input type="radio" name="gender" value="male" >Male
 				<br>
-				<input type="radio" name="gender" value="female">Female</td>
+				<input type="radio" name="gender" value="female" required>Female</td>
 		</tr>
 		<tr>
 			<td width="30%">Continent</td>
@@ -40,6 +40,11 @@
 				<input type="checkbox" name="meals[]" value="Lunch">Lunch
 				<br>
 				<input type="checkbox" name="meals[]" value="Dinner">Dinner</td>
+		</tr>
+		<tr>
+			<td width="30%">Upload Photo</td>
+			<td width="60%"><input type="file" name="photo_file" value="Choose File">
+			</td>
 		</tr>
 		<tr bgcolor="gray">
 			<td align="right" colspan="2">
