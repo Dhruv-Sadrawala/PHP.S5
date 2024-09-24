@@ -287,7 +287,7 @@ if (isset($_REQUEST['update'])) {
         if (empty($NameErr) && empty($studentIdErr)) {
 
 
-        $update_qr="UPDATE reg_details SET Name='$Name' WHERE $studentId=$studentId";
+        $update_qr="UPDATE reg_details SET Name='$Name' WHERE studentId=$studentId";
 
         $mysqli_qr_2=mysqli_query($con,$update_qr);
 
