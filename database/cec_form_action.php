@@ -165,8 +165,7 @@ if (isset($_REQUEST['submit_show'])) {
 
 if (isset($_REQUEST['insert'])) {
 
-
-    if (empty($_REQUEST["Name"])) {
+     if (empty($_REQUEST["Name"])) {
         $NameErr = "Name is required";
     } elseif (!preg_match("/^[a-zA-Z-' ]*$/", $_REQUEST["Name"])) {
         $NameErr = "Only letters and white spaces allowed";
@@ -240,7 +239,7 @@ if (isset($_REQUEST['insert'])) {
         $hobbiesErr = "Please select at least one hobby";
     } else {
         $hobbies = $_REQUEST["hobbies"];
-        $hobbies_array=implode("", $hobbies);
+        $hobbies_array=implode(',', $hobbies);
     }
 
     if (empty($NameErr) && empty($dobErr) && empty($timeErr) && empty($studentIdErr) && empty($genderErr) && 
@@ -248,11 +247,59 @@ if (isset($_REQUEST['insert'])) {
 
 
         $insert_qr="INSERT INTO reg_details(Name,dob,time,studentId,gender,city,state,country,email,hobbies) VALUES ('$Name','$dob','$time','$studentId','$gender','$city','$state','$country','$email','$hobbies_array')";
-
+        
         $mysqli_qr_1=mysqli_query($con,$insert_qr);
 
+
         if ($mysqli_qr_1) {
-            echo "<h3 style=font-family:sans-serif;text-align:center;>Data is stored in database.</h3>";
+            echo "<style>
+                table {
+                    width: 90%;
+                    margin: 20px auto;
+                    border-collapse: collapse;
+                }
+                th, td {
+                    padding: 5px;
+                    text-align: center;
+                    border: 1px solid #000;
+                    font-family: Arial, sans-serif;
+                    font-size: 16px;
+                }
+                th {
+                    background-color: #d1d1d1;
+                    color: #000;
+                    font-weight: bold;
+                }
+                td {
+                    background-color: #e5e5e5;
+                }
+              </style>";
+        echo "<table cellspacing=2 border=2 align=center>
+        <tr>
+        <th style='min-height:20px;'>Name</th>
+        <th style='min-height:20px;'>DOB</th>
+        <th style='min-height:20px;'>Time</th>
+        <th style='min-height:20px;'>Student ID</th>
+        <th style='min-height:20px;'>Gender</th>
+        <th style='min-height:20px;'>City</th>
+        <th style='min-height:20px;'>State</th>
+        <th style='min-height:20px;'>Country</th>
+        <th style='min-height:20px;'>Email</th>
+        <th style='min-height:20px;'>Hobbies</th>
+        </tr>
+        <tr>
+        <td>$Name</td>
+        <td>$dob</td>
+        <td>$time</td>
+        <td>$studentId</td>
+        <td>$gender</td>
+        <td>$city</td>
+        <td>$state</td>
+        <td>$country</td>
+        <td>$email</td>
+        <td>$hobbies_array</td>
+        </tr></table></html>";
+        echo "<h3 style=font-family:sans-serif;text-align:center;>Above data is stored in database.</h3>";
         }
         
         else{
@@ -293,7 +340,38 @@ if (isset($_REQUEST['update'])) {
 
 
         if ($mysqli_qr_2) {
-            echo "<h3 style=font-family:sans-serif;text-align:center;>Data updated successfully.</h3>";
+             echo "<style>
+                table {
+                    width: 90%;
+                    margin: 20px auto;
+                    border-collapse: collapse;
+                }
+                th, td {
+                    padding: 5px;
+                    text-align: center;
+                    border: 1px solid #000;
+                    font-family: Arial, sans-serif;
+                    font-size: 16px;
+                }
+                th {
+                    background-color: #d1d1d1;
+                    color: #000;
+                    font-weight: bold;
+                }
+                td {
+                    background-color: #e5e5e5;
+                }
+              </style>";
+        echo "<table cellspacing=2 border=2 align=center>
+        <tr>
+        <th style='min-height:20px;' width=50%>Name</th>
+        <th style='min-height:20px;' width=50%>Student ID</th>
+        </tr>
+        <tr>
+        <td>$Name</td>
+        <td>$studentId</td>
+        </tr></table></html>";
+            echo "<h3 style=font-family:sans-serif;text-align:center;>Above data updated successfully.</h3>";
         }
         
         else{
@@ -319,7 +397,6 @@ if (isset($_REQUEST['delete'])) {
         }
 
 
-
         if (empty($studentIdErr)) {
 
 
@@ -329,7 +406,7 @@ if (isset($_REQUEST['delete'])) {
 
 
         if ($mysqli_qr_2) {
-            echo "<h3 style=font-family:sans-serif;text-align:center;>Data deletion successfully.</h3>";
+            echo "<h3 style=font-family:sans-serif;text-align:center;>Data deleted successfully.</h3>";
         }
         
         else{
