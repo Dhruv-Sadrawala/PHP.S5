@@ -1,9 +1,16 @@
 <?php
-$con = mysqli_connect('localhost', 'root', '', 'mydatabase');
+$con = mysqli_connect('localhost', 'root', '');
 
-$sql="CREATE TABLE student1 (enroll_no int(5),name varchar(20))";
+$sql="CREATE DATABASE mydatabase";
 
-mysqli_query($con,$sql);
+$qr=mysqli_query($con,$sql);
+
+if ($qr) {
+	echo "Database Created";
+}
+else{
+	echo "Database Not Created";
+}
 
 mysqli_close($con);
 ?>
